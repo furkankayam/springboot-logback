@@ -1,0 +1,18 @@
+09-02-2024 15:21:50.037 INFO o.s.b.StartupInfoLogger Starting LoggingApplication using Java 19.0.1 with PID 14320 (C:\Users\furka\Desktop\logging\target\classes started by HONOR in C:\Users\furka\Desktop\logging)
+09-02-2024 15:21:50.044 INFO o.s.b.SpringApplication The following 1 profile is active: "dev"
+09-02-2024 15:21:52.686 INFO o.s.b.w.e.t.TomcatWebServer Tomcat initialized with port 8080 (http)
+09-02-2024 15:21:52.717 INFO o.a.j.l.DirectJDKLog Initializing ProtocolHandler ["http-nio-8080"]
+09-02-2024 15:21:52.722 INFO o.a.j.l.DirectJDKLog Starting service [Tomcat]
+09-02-2024 15:21:52.724 INFO o.a.j.l.DirectJDKLog Starting Servlet engine: [Apache Tomcat/10.1.18]
+09-02-2024 15:21:52.872 INFO o.a.j.l.DirectJDKLog Initializing Spring embedded WebApplicationContext
+09-02-2024 15:21:52.876 INFO o.s.b.w.s.c.ServletWebServerApplicationContext Root WebApplicationContext: initialization completed in 2692 ms
+09-02-2024 15:21:53.668 INFO o.a.j.l.DirectJDKLog Starting ProtocolHandler ["http-nio-8080"]
+09-02-2024 15:21:53.715 INFO o.s.b.w.e.t.TomcatWebServer Tomcat started on port 8080 (http) with context path ''
+09-02-2024 15:21:53.738 INFO o.s.b.StartupInfoLogger Started LoggingApplication in 6.388 seconds (process running for 8.679)
+09-02-2024 15:22:13.868 INFO o.a.j.l.DirectJDKLog Initializing Spring DispatcherServlet 'dispatcherServlet'
+09-02-2024 15:22:13.868 INFO o.s.w.s.FrameworkServlet Initializing Servlet 'dispatcherServlet'
+09-02-2024 15:22:13.876 INFO o.s.w.s.FrameworkServlet Completed initialization in 0 ms
+09-02-2024 15:33:36.209 INFO c.l.c.TestController get details metodu basladi
+09-02-2024 15:33:41.521 INFO c.l.c.TestController get details metodu basladi
+09-02-2024 15:36:27.354 INFO c.l.c.TestController get details metodu basladi
+09-02-2024 15:36:38.730 INFO c.l.c.TestController get details metodu basladi

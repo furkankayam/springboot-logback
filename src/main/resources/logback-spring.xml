@@ -1,0 +1,93 @@
+<configuration debug="true">
+
+    <!--<veriable name="LOG_PATH" value="${LOG_PATH}:-./logs" />-->
+    <property name="LOG_PATH" value="./logs" />
+
+    <property name="LOG_LEVEL" value="INFO" />
+    <!--<veriable name="LOG_LEVEL" value="${LOB_LEVEL:-INFO}" />-->
+
+    <!-- JSON Logging Appender -->
+    <appender name="JSONFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/app_logs.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>app_logs.%d{yyyy-MM-dd}.gz</fileNamePattern>
+
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>3GB</totalSizeCap>
+        </rollingPolicy>
+
+        <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+            <jsonFormatter
+                    class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                <prettyPrint>false</prettyPrint>
+            </jsonFormatter>
+            <timeStampFormat>dd-MM-yyyy' 'HH:mm:ss.SSS</timeStampFormat>
+            <appendLineSeperator>true</appendLineSeperator>
+            <includeContextName>false</includeContextName>
+        </layout>
+
+        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp>
+                    <fieldName>timestamp</fieldName>
+                    <pattern>dd-MM-yyyy' 'HH:mm:ss.SSS</pattern>
+                </timestamp>
+                <message></message>
+                <pattern> your desired pattern </pattern>
+            </providers>
+        </encoder>
+
+    </appender>
+
+    <!-- Console Logging Appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                %d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- File Logging Appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOG_PATH}/spring-boot-logging.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %p %C{1} %m%n</Pattern>
+            <!--%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n-->
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/archive/spring-boot-logging-%d{dd-MM-yyyy}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize>
+                <maxHistory>7</maxHistory>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+    </appender>
+
+    <springProfile name="dev">
+        <root level="info">
+            <!--Appender-ref, bir logger'ı bir veya daha fazla appender'a bağlamak için kullanılan bir XML öğesidir.-->
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+
+        </root>
+        <logger name="com.logging.controller" additivity="false" level="${LOG_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="FILE"/>
+            <appender-ref ref="JSONFILE"/>
+        </logger>
+    </springProfile>
+
+    <springProfile name="deneme">
+        <root level="info">
+            <!--Appender-ref, bir logger'ı bir veya daha fazla appender'a bağlamak için kullanılan bir XML öğesidir.-->
+            <appender-ref ref="CONSOLE"/>
+
+        </root>
+        <logger name="com.logging.controller" additivity="false" level="${LOG_LEVEL}">
+            <appender-ref ref="CONSOLE"/>
+        </logger>
+    </springProfile>
+
+</configuration>
